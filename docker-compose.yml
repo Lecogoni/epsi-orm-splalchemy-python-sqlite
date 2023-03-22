@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+# PHP/SYMFONY - API PLATFORM
+  python:
+    container_name: python
+    image: epsi-python:1.0
+    command: tail -F anything
+    depends_on:
+      - database
+    links:
+      - database
+
+
+# POSTGRES - DB
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+      - 5432:5432
+
